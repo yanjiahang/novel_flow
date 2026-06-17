@@ -1,79 +1,111 @@
 server:
-  port: 9900
+  port: 8082
+  tomcat:
+    max-swallow-size: -1
   servlet:
     encoding:
       charset: UTF-8
       enabled: true
       force: true
 
-file:
-  upload:
-    path: ./uploads
-    allowed-extensions: txt,md
+novel:
+  workspace: ./novel-projects
+  allowed-extensions: txt,md,epub
+  agent:
+    memory:
+      enabled: true
+      user-id: local-user
+      embedding-dimensions: 1536
+      inject-limit: 6
+      search-limit: 8
+      duplicate-score-threshold: 0.92
+  graph:
+    checkpoint:
+      saver: redis # redis 或 file；本地 Redis 容器关闭时可改为 file
+      redis:
+        address: redis://localhost:6379
+        password:
+        database: 0
+        connection-pool-size: 16
+        connection-minimum-idle-size: 4
+        timeout-ms: 3000
+  translation:
+    base-url: http://localhost:11434
+    model: hf.co/SakuraLLM/Sakura-7B-Qwen2.5-v1.0-GGUF:latest
+    temperature: 0.1
+    top-p: 0.3
+    num-ctx: 8192
+    num-gpu: 999
+    num-predict: 1536
+    chunk-size: 1200
+    glossary-path: ./config/novel-glossary.json
+    context-source-chars: 800
+    context-translation-chars: 800
+    review-enabled: true
+    review-mode: chapter # chapter / chunk / both / none
+    fix-enabled: true
+    review-max-chars: 1800
+    chapter-review-max-chars: 200000
+    timeout-ms: 300000
 
-milvus:
-  host: localhost
-  port: 19530
-  username: ""
-  password: ""
-  database: default
-  timeout: 10000
-
-# Spring AI Alibaba DashScope 配置
+# Spring AI ChatModel 配置：NovelFlow Supervisor Agent / 审校修订使用 DashScope
 spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 120MB
+      file-size-threshold: 2MB
   ai:
+    model:
+      chat: dashscope
+      embedding: dashscope
     dashscope:
-      api-key: sk-1c263c3e179a4b00a16d1ea500c8128a  # 从环境变量读取或使用默认值
+      base-url: https://dashscope.aliyuncs.com
+      api-key: ${AI_DASHSCOPE_API_KEY:${DASHSCOPE_API_KEY:}}
+      chat:
+#        base-url: https://dashscope.aliyuncs.com
+#        completions-path: /api/v1/services/aigc/text-generation/generation
+        options:
+          model: qwen3.6-max-preview
+          temperature: 0.1
+          top-p: 0.7
+          max-tokens: 64000
+          enable-thinking: false
+          incremental-output: true
+          timeout: 600000
+      embedding:
+        enabled: true
+        options:
+          model: text-embedding-v4
+          dimensions: 1536
+    ollama:
+      base-url: http://localhost:11434
       chat:
         options:
-          timeout: 180000  # 超时时间180秒（3分钟）
-      retry:
-        max-attempts: 3  # 最大重试次数
-        backoff:
-          initial-interval: 2000  # 初始重试间隔2秒
-          multiplier: 2  # 重试间隔倍数
-          max-interval: 10000  # 最大重试间隔10秒
-    
-    # Spring AI MCP 客户端配置
-    # 如果使用mock数据，请注释这部分内容
-    mcp:
-      client:
-        enabled: true
-        name: tencent-mcp-server
-        version: 1.0.0
-        request-timeout: 60s
-        type: ASYNC
-        sse:
-          connections:
-            tencent-cls:
-              url: https://mcp-api.tencent-cloud.com
-              sse-endpoint: /sse/0998387c2104c113  # 完整的SSE端点路径
-
-# 阿里云 DashScope Embedding API 配置
-dashscope:
-  api:
-    key: sk-1c263c3e179a4b00a16d1ea500c8128a  # 从环境变量读取或使用默认值（用于自定义配置）
-  embedding:
-#    model: text-embedding-v4  # 阿里云文本向量化模型
-    model: tongyi-embedding-vision-flash-2026-03-06  # 阿里云文本向量化模型
-
-# 文档分片配置
-document:
-  chunk:
-    max-size: 800  # 每个分片最大字符数
-    overlap: 100   # 分片之间的重叠字符数
-
-# RAG 配置
-rag:
-  top-k: 3  # 检索返回的最相似文档数量
-  model: "qwen3-max"  # 大语言模型名称
-
-# Prometheus 配置
-prometheus:
-  base-url: http://localhost:9090
-  timeout: 10  # 超时时间（秒）
-  mock-enabled: false  # 是否启用 Mock 模式（用于测试）
-
-# CLS 云日志服务配置
-cls:
-  mock-enabled: false  # 是否启用 Mock 模式（用于测试，设为 true 返回与告警关联的模拟日志数据）
+          model: qwen3.5:4b
+          temperature: 0.1
+          top-p: 0.7
+          num-ctx: 8192
+          num-predict: 2048
+    retry:
+      max-attempts: 3  # 最大重试次数
+      backoff:
+        initial-interval: 2000  # 初始重试间隔2秒
+        multiplier: 2  # 重试间隔倍数
+        max-interval: 10000  # 最大重试间隔10秒
+  datasource:
+#    url: jdbc:postgresql://localhost:5432/robot
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:postgresql://localhost:5432/robot # 数据库连接 URL
+    username: postgres
+    password: postgres
+    hikari: # HikariCP 连接池配置
+      pool-name: AI-Robot-HikariCP # 自定义连接池名称
+      auto-commit: true # 是否自动提交事务
+      connection-timeout: 30000 # 连接超时时间（毫秒）
+      idle-timeout: 600000 # 空闲连接存活最大时间（毫秒）
+      max-lifetime: 1800000 # 连接最大存活时间（毫秒）
+      minimum-idle: 5 # 最小空闲连接数
+      maximum-pool-size: 20 # 最大连接池大小
+      connection-test-query: SELECT 1 # 连接测试查询
+      validation-timeout: 5000 # 验证连接的有效性

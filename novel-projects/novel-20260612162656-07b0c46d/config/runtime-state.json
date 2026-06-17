@@ -1,0 +1,205 @@
+{
+  "projectId" : "novel-20260612162656-07b0c46d",
+  "status" : "CANCELLED",
+  "currentNode" : "TRANSLATE_CHAPTER",
+  "createdAt" : "2026-06-12 16:26:56",
+  "updatedAt" : "2026-06-14 16:05:26",
+  "stateFilePath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\config\\runtime-state.json",
+  "nodes" : {
+    "IMPORT_EPUB" : {
+      "nodeName" : "IMPORT_EPUB",
+      "status" : "COMPLETED",
+      "message" : "小说原文已导入",
+      "startedAt" : "2026-06-12 16:26:56",
+      "updatedAt" : "2026-06-12 16:26:56",
+      "completedAt" : "2026-06-12 16:26:56",
+      "metadata" : {
+        "fileName" : "かがみの孤城 (辻村深月) (Z-Library) (1).epub",
+        "size" : 450669
+      }
+    },
+    "PARSE_CHAPTERS" : {
+      "nodeName" : "PARSE_CHAPTERS",
+      "status" : "COMPLETED",
+      "message" : "章节解析完成",
+      "startedAt" : "2026-06-12 16:26:58",
+      "updatedAt" : "2026-06-12 16:26:59",
+      "completedAt" : "2026-06-12 16:26:59",
+      "metadata" : {
+        "totalChapters" : 13
+      }
+    },
+    "CLEAN_TEXT" : {
+      "nodeName" : "CLEAN_TEXT",
+      "status" : "COMPLETED",
+      "message" : "正文清洗完成",
+      "startedAt" : "2026-06-12 16:26:59",
+      "updatedAt" : "2026-06-12 16:26:59",
+      "completedAt" : "2026-06-12 16:26:59",
+      "metadata" : {
+        "sourceFile" : "かがみの孤城 (辻村深月) (Z-Library) (1).epub"
+      }
+    },
+    "BUILD_TERMS" : {
+      "nodeName" : "BUILD_TERMS",
+      "status" : "COMPLETED",
+      "message" : "术语记忆已准备完成",
+      "startedAt" : "2026-06-14 15:32:22",
+      "updatedAt" : "2026-06-14 16:04:33",
+      "completedAt" : "2026-06-14 16:04:33",
+      "metadata" : {
+        "jobId" : "translation-20260614160433-c52d2184",
+        "jobType" : "CHAPTER",
+        "termMemoryPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\config\\term-memory.json"
+      }
+    },
+    "TRANSLATE_CHAPTER" : {
+      "nodeName" : "TRANSLATE_CHAPTER",
+      "status" : "CANCELLED",
+      "message" : "章节翻译已取消",
+      "startedAt" : "2026-06-14 15:32:22",
+      "updatedAt" : "2026-06-14 16:05:26",
+      "completedAt" : "2026-06-14 16:05:26",
+      "metadata" : {
+        "chapterIndex" : 1,
+        "jobId" : "translation-20260614160433-c52d2184"
+      }
+    },
+    "TRANSLATE_CHUNK" : {
+      "nodeName" : "TRANSLATE_CHUNK",
+      "status" : "RUNNING",
+      "message" : "分段输入已构造 5/26",
+      "startedAt" : "2026-06-14 15:32:22",
+      "updatedAt" : "2026-06-14 16:05:23",
+      "completedAt" : "2026-06-14 15:58:49",
+      "metadata" : {
+        "glossaryPromptChars" : 221,
+        "chapterIndex" : 1,
+        "chunkIndex" : 5,
+        "jobId" : "translation-20260614160433-c52d2184"
+      }
+    },
+    "REVIEW_CHUNK" : {
+      "nodeName" : "REVIEW_CHUNK",
+      "status" : "SKIPPED",
+      "message" : "已使用章节级审校，跳过分段审校",
+      "startedAt" : "2026-06-14 15:51:38",
+      "updatedAt" : "2026-06-14 15:58:49",
+      "completedAt" : "2026-06-14 15:58:49",
+      "metadata" : {
+        "chapterIndex" : 1,
+        "jobId" : "translation-20260614155816-3d3155e4"
+      }
+    },
+    "FIX_CHUNK" : {
+      "nodeName" : "FIX_CHUNK",
+      "status" : "SKIPPED",
+      "message" : "已使用章节级审校，跳过分段修订",
+      "startedAt" : "2026-06-14 15:51:38",
+      "updatedAt" : "2026-06-14 15:58:49",
+      "completedAt" : "2026-06-14 15:58:49",
+      "metadata" : {
+        "chapterIndex" : 1,
+        "jobId" : "translation-20260614155816-3d3155e4"
+      }
+    },
+    "ACCEPT_CHUNK" : {
+      "nodeName" : "ACCEPT_CHUNK",
+      "status" : "COMPLETED",
+      "message" : "分段已接受 4/26",
+      "startedAt" : "2026-06-14 15:32:39",
+      "updatedAt" : "2026-06-14 16:05:23",
+      "completedAt" : "2026-06-14 16:05:23",
+      "metadata" : {
+        "summary" : "",
+        "issueCount" : 0,
+        "chapterIndex" : 1,
+        "chunkIndex" : 4,
+        "reviewStatus" : "",
+        "fixStatus" : "",
+        "jobId" : "translation-20260614160433-c52d2184"
+      }
+    },
+    "REVIEW_CHAPTER" : {
+      "nodeName" : "REVIEW_CHAPTER",
+      "status" : "COMPLETED",
+      "message" : "章节级审校润色完成",
+      "startedAt" : "2026-06-14 15:51:10",
+      "updatedAt" : "2026-06-14 15:58:49",
+      "completedAt" : "2026-06-14 15:58:49",
+      "metadata" : {
+        "chapterIndex" : 1,
+        "issueCount" : 1,
+        "summary" : "章节总审校已应用润色，剩余问题均为低风险提示",
+        "jobId" : "translation-20260614155816-3d3155e4",
+        "reviewStatus" : "POLISHED",
+        "applied" : true,
+        "reviewPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\review\\chapters\\001_五月_excerpt_000000_002954.chapter-review.json",
+        "polishedChars" : 1989
+      }
+    },
+    "MERGE_CHAPTER" : {
+      "nodeName" : "MERGE_CHAPTER",
+      "status" : "COMPLETED",
+      "message" : "章节译文已合并",
+      "startedAt" : "2026-06-14 15:51:38",
+      "updatedAt" : "2026-06-14 15:58:50",
+      "completedAt" : "2026-06-14 15:58:50",
+      "metadata" : {
+        "chapterIndex" : 1,
+        "outputPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\output\\excerpts\\001_五月_excerpt_000000_002954.md",
+        "jobType" : "EXCERPT",
+        "jobId" : "translation-20260614155816-3d3155e4"
+      }
+    },
+    "EXPORT_BOOK" : {
+      "nodeName" : "EXPORT_BOOK",
+      "status" : "COMPLETED",
+      "message" : "章节译文已导出",
+      "startedAt" : "2026-06-14 15:51:38",
+      "updatedAt" : "2026-06-14 15:58:50",
+      "completedAt" : "2026-06-14 15:58:50",
+      "metadata" : {
+        "outputPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\output\\excerpts\\001_五月_excerpt_000000_002954.md",
+        "jobType" : "EXCERPT",
+        "jobId" : "translation-20260614155816-3d3155e4",
+        "polishedPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\polished\\001_五月_excerpt_000000_002954.md",
+        "chapterIndex" : 1
+      }
+    }
+  },
+  "metadata" : {
+    "fileName" : "かがみの孤城 (辻村深月) (Z-Library) (1).epub",
+    "size" : 450669,
+    "sourceFile" : "かがみの孤城 (辻村深月) (Z-Library) (1).epub",
+    "totalChapters" : 13,
+    "jobId" : "translation-20260614160433-c52d2184",
+    "termMemoryPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\config\\term-memory.json",
+    "jobType" : "CHAPTER",
+    "chapterIndex" : 1,
+    "sourceCharLimit" : 0,
+    "sourceStartOffset" : 0,
+    "sourceCharCount" : 30215,
+    "fullSourceCharCount" : 30215,
+    "totalChunks" : 26,
+    "completedChunks" : 4,
+    "sourceEndOffset" : 30215,
+    "glossaryPromptChars" : 221,
+    "chunkIndex" : 5,
+    "latestChunkTranslatedCharCount" : 799,
+    "issueCount" : 0,
+    "summary" : "",
+    "fixStatus" : "",
+    "reviewStatus" : "",
+    "error" : "章节翻译计划不存在",
+    "translatedChars" : 2086,
+    "sourceChars" : 2948,
+    "applied" : true,
+    "reviewPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\review\\chapters\\001_五月_excerpt_000000_002954.chapter-review.json",
+    "polishedChars" : 1989,
+    "acceptedChunks" : 3,
+    "outputPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\output\\excerpts\\001_五月_excerpt_000000_002954.md",
+    "polishedPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\polished\\001_五月_excerpt_000000_002954.md",
+    "translatedCharCount" : 1989
+  }
+}

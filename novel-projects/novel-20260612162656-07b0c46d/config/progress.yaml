@@ -1,0 +1,59 @@
+# NovelFlow 进度追踪
+status: "CHAPTER_SPLIT"
+totalChapters: 13
+lastCompletedChapter: 0
+nextChapter: 1
+updatedAt: "2026-06-12T16:26:59.108164"
+chapters:
+  - index: 1
+    title: "五月"
+    fileName: "001_五月.md"
+    status: "PENDING"
+  - index: 2
+    title: "六月"
+    fileName: "002_六月.md"
+    status: "PENDING"
+  - index: 3
+    title: "七月"
+    fileName: "003_七月.md"
+    status: "PENDING"
+  - index: 4
+    title: "八月"
+    fileName: "004_八月.md"
+    status: "PENDING"
+  - index: 5
+    title: "九月"
+    fileName: "005_九月.md"
+    status: "PENDING"
+  - index: 6
+    title: "十月"
+    fileName: "006_十月.md"
+    status: "PENDING"
+  - index: 7
+    title: "十一月"
+    fileName: "007_十一月.md"
+    status: "PENDING"
+  - index: 8
+    title: "十二月"
+    fileName: "008_十二月.md"
+    status: "PENDING"
+  - index: 9
+    title: "一月"
+    fileName: "009_一月.md"
+    status: "PENDING"
+  - index: 10
+    title: "二月"
+    fileName: "010_二月.md"
+    status: "PENDING"
+  - index: 11
+    title: "三月"
+    fileName: "011_三月.md"
+    status: "PENDING"
+  - index: 12
+    title: "閉城"
+    fileName: "012_閉城.md"
+    status: "PENDING"
+  - index: 13
+    title: "エピローグ"
+    fileName: "013_エピローグ.md"
+    status: "PENDING"

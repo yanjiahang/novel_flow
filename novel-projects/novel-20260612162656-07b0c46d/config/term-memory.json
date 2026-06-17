@@ -1,0 +1,103 @@
+{
+  "projectId" : "novel-20260612162656-07b0c46d",
+  "memoryPath" : "D:\\Java代码Oncall\\SuperBizAgent-release-2026-01-02\\novel-projects\\novel-20260612162656-07b0c46d\\config\\term-memory.json",
+  "createdAt" : "2026-06-14 15:32:22",
+  "updatedAt" : "2026-06-14 16:05:23",
+  "terms" : [ {
+    "source" : "かがみの孤城",
+    "target" : "镜之孤城",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "作品标题"
+  }, {
+    "source" : "こころ",
+    "target" : "心",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "主角名，不能译为亚纪"
+  }, {
+    "source" : "アキ",
+    "target" : "亚纪",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名，与こころ不是同一人"
+  }, {
+    "source" : "スバル",
+    "target" : "昴",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名"
+  }, {
+    "source" : "マサムネ",
+    "target" : "征宗",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名"
+  }, {
+    "source" : "マサヤ",
+    "target" : "正也",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名，不能译为征宗"
+  }, {
+    "source" : "フウカ",
+    "target" : "风香",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名"
+  }, {
+    "source" : "ウレシノ",
+    "target" : "乌里诺",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名"
+  }, {
+    "source" : "リオン",
+    "target" : "里昂",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "角色名"
+  }, {
+    "source" : "オオカミさま",
+    "target" : "大野狼大人",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "称呼"
+  }, {
+    "source" : "心の教室",
+    "target" : "心灵教室",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "机构名，free school 名称，不是主角名"
+  }, {
+    "source" : "雪科第五中学",
+    "target" : "雪科第五中学",
+    "type" : "STATIC_GLOSSARY",
+    "confidence" : 1.0,
+    "firstSeenChapter" : 0,
+    "firstSeenChunk" : 0,
+    "notes" : "学校名"
+  } ]
+}

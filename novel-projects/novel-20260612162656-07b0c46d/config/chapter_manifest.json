@@ -1,0 +1,97 @@
+{
+  "chapters" : [ {
+    "index" : 1,
+    "title" : "五月",
+    "fileName" : "001_五月.md",
+    "startLine" : 1,
+    "endLine" : 1211,
+    "charCount" : 30217
+  }, {
+    "index" : 2,
+    "title" : "六月",
+    "fileName" : "002_六月.md",
+    "startLine" : 1,
+    "endLine" : 955,
+    "charCount" : 25909
+  }, {
+    "index" : 3,
+    "title" : "七月",
+    "fileName" : "003_七月.md",
+    "startLine" : 1,
+    "endLine" : 775,
+    "charCount" : 19986
+  }, {
+    "index" : 4,
+    "title" : "八月",
+    "fileName" : "004_八月.md",
+    "startLine" : 1,
+    "endLine" : 1333,
+    "charCount" : 31247
+  }, {
+    "index" : 5,
+    "title" : "九月",
+    "fileName" : "005_九月.md",
+    "startLine" : 1,
+    "endLine" : 635,
+    "charCount" : 15867
+  }, {
+    "index" : 6,
+    "title" : "十月",
+    "fileName" : "006_十月.md",
+    "startLine" : 1,
+    "endLine" : 551,
+    "charCount" : 13383
+  }, {
+    "index" : 7,
+    "title" : "十一月",
+    "fileName" : "007_十一月.md",
+    "startLine" : 1,
+    "endLine" : 527,
+    "charCount" : 11723
+  }, {
+    "index" : 8,
+    "title" : "十二月",
+    "fileName" : "008_十二月.md",
+    "startLine" : 1,
+    "endLine" : 969,
+    "charCount" : 22898
+  }, {
+    "index" : 9,
+    "title" : "一月",
+    "fileName" : "009_一月.md",
+    "startLine" : 1,
+    "endLine" : 1127,
+    "charCount" : 24143
+  }, {
+    "index" : 10,
+    "title" : "二月",
+    "fileName" : "010_二月.md",
+    "startLine" : 1,
+    "endLine" : 1025,
+    "charCount" : 23926
+  }, {
+    "index" : 11,
+    "title" : "三月",
+    "fileName" : "011_三月.md",
+    "startLine" : 1,
+    "endLine" : 2921,
+    "charCount" : 61303
+  }, {
+    "index" : 12,
+    "title" : "閉城",
+    "fileName" : "012_閉城.md",
+    "startLine" : 1,
+    "endLine" : 1165,
+    "charCount" : 21535
+  }, {
+    "index" : 13,
+    "title" : "エピローグ",
+    "fileName" : "013_エピローグ.md",
+    "startLine" : 1,
+    "endLine" : 189,
+    "charCount" : 4213
+  } ],
+  "totalChapters" : 13,
+  "generatedAt" : "2026-06-12T16:26:59.106149700",
+  "sourceFileName" : "かがみの孤城 (辻村深月) (Z-Library) (1).epub"
+}

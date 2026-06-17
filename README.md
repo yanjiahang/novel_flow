@@ -1,195 +1,89 @@
-# SuperBizAgent
+# NovelFlow Agent
 
-> 基于 Spring Boot + AI Agent 的智能问答与运维系统
+基于 Spring Boot + Spring AI Alibaba 的长篇日语小说翻译 Agent Runtime。项目从原 SuperBizAgent 骨架演进而来，当前已聚焦 NovelFlow 翻译工作流；Supervisor Agent 默认使用阿里云百炼 DashScope，正文翻译使用本地 SakuraLLM/Ollama，前端使用 React + TypeScript。
 
-## 📖 项目简介
+## 当前阶段
 
-企业级智能业务代理系统，包含两大核心模块：
+Phase 1 已完成小说工作流的非 LLM 闭环：
 
-### 1. RAG 智能问答
-集成 Milvus 向量数据库和阿里云 DashScope，提供基于检索增强生成的智能问答能力，支持多轮对话和流式输出。
+- 小说项目初始化。
+- `.txt` / `.md` / `.epub` 原文上传。
+- Java 章节扫描与拆分，EPUB 会先抽取 spine 正文。
+- 基础状态文件与事件日志。
+- 项目状态查询接口。
 
-### 2. AIOps 智能运维
-基于 AI Agent 的自动化运维系统，采用 Planner-Executor-Replanner 架构，实现告警分析、日志查询、智能诊断和报告生成。
+详细接口见 [NOVELFLOW_PHASE1.md](docs/NOVELFLOW_PHASE1.md)。
 
-## 🚀 核心特性
+## 目标架构
 
-- ✅ **RAG 问答**: 向量检索 + 多轮对话 + 流式输出
-- ✅ **AIOps 运维**: 智能诊断 + 多 Agent 协作 + 自动报告
-- ✅ **工具集成**: 文档检索、告警查询、日志分析、时间工具
-- ✅ **会话管理**: 上下文维护、历史管理、自动清理
-- ✅ **Web 界面**: 提供测试界面和 RESTful API
-
-
-## 🛠️ 技术栈
-
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| Java | 17 | 开发语言 |
-| Spring Boot | 3.2.0 | 应用框架 |
-| Spring AI | - | AI Agent 框架 |
-| DashScope | 2.17.0 | 阿里云 AI 服务 |
-| Milvus | 2.6.10 | 向量数据库 |
-
-## 📦 核心模块
-
-```
-SuperBizAgent/
-├── src/main/java/org/example/
-│   ├── controller/
-│   │   └── ChatController.java        # 统一接口控制器 ⭐
-│   ├── service/
-│   │   ├── ChatService.java           # 对话服务 ⭐
-│   │   ├── AiOpsService.java          # AIOps 服务 ⭐
-│   │   ├── RagService.java            # RAG 服务
-│   │   └── Vector*.java               # 向量服务
-│   ├── agent/tool/                    # Agent 工具集
-│   │   ├── DateTimeTools.java         # 时间工具
-│   │   ├── InternalDocsTools.java     # 文档检索
-│   │   ├── QueryMetricsTools.java     # 告警查询
-│   │   └── QueryLogsTools.java        # 日志查询
-│   └── config/                        # 配置类
-├── src/main/resources/
-│   ├── static/                        # Web 界面
-│   └── application.yml                # 应用配置
-└── aiops-docs/                        # 运维文档库
+```text
+ScanChapter
+  -> TranslateChapter
+  -> UpdateTerms
+  -> UpdateSummary
+  -> FirstReview
+  -> ApplyRewrite
+  -> QualityCheck
+  -> Retranslate
+  -> MergeFinal
 ```
 
+后续会逐步引入：
 
-## 📡 核心接口
+- 任务图与节点状态机。
+- 多 Agent 协作。
+- 多模型路由。
+- 术语记忆与上下文摘要。
+- 审改分离。
+- 三向质检与自动重译。
+- 断点恢复与 JSONL tracing。
 
-### 1. 智能问答接口
+## 技术栈
 
-**流式对话（推荐）**
-```bash
-POST /api/chat_stream
-Content-Type: application/json
+| 技术 | 说明 |
+|------|------|
+| Java 17 | 主开发语言 |
+| Spring Boot 3.5 | Web 与服务框架 |
+| Spring AI Alibaba | Agent Framework / Graph Runtime |
+| DashScope | Supervisor Agent / 审校修订 ChatModel |
+| Ollama | SakuraLLM 本地正文翻译 |
+| React + TypeScript | NovelFlow Agent Workspace |
 
-{
-  "Id": "session-123",
-  "Question": "什么是向量数据库？"
-}
-```
-支持 SSE 流式输出、自动工具调用、多轮对话。
-
-**普通对话**
-```bash
-POST /api/chat
-Content-Type: application/json
-
-{
-  "Id": "session-123",
-  "Question": "什么是向量数据库？"
-}
-```
-一次性返回完整结果，支持工具调用和多轮对话。
-
-### 2. AIOps 智能运维接口
+## 运行
 
 ```bash
-POST /api/ai_ops
-```
-自动执行告警分析流程，生成运维报告（SSE 流式输出）。
-
-### 3. 会话管理
-
-- `POST /api/chat/clear` - 清空会话历史
-- `GET /api/chat/session/{sessionId}` - 获取会话信息
-
-### 4. 文件管理
-
-- `POST /api/upload` - 上传文件并自动向量化
-- `GET /milvus/health` - Milvus 健康检查
-
-
-## ⚙️ 核心配置
-
-### application.yml
-
-```yaml
-server:
-  port: 9900
-
-# Milvus 向量数据库
-milvus:
-  host: localhost
-  port: 19530
-
-# 阿里云 DashScope
-spring:
-  ai:
-    dashscope:
-      api-key: "${DASHSCOPE_API_KEY}" // 环境变量
-
-# RAG 配置
-rag:
-  top-k: 3
-  model: "qwen3-max"
-
-# 文档分片
-document:
-  chunk:
-    max-size: 800
-    overlap: 100
-```
-
-### 环境变量
-
-```bash
-export DASHSCOPE_API_KEY=your-api-key
-```
-
-
-## 🚀 快速开始
-
-### 1. 环境准备
-
-```bash
-# 设置 API Key
-export DASHSCOPE_API_KEY=your-api-key
-```
-
-### 2. 启动应用
-
-方法一： 手动启动
-```bash
-1.先启动向量数据库
-docker compose up -d -f vector-database.yml
-
-2.启动服务
-mvn clean install
 mvn spring-boot:run
 ```
 
-方法二：一键启动
+默认端口见 `src/main/resources/application.yml`。
+
+## Phase 1 接口
+
+创建项目：
+
 ```bash
-make init  # 会自动启动向量数据库并上传运维文档到向量库
-```
-
-
-### 3. 使用示例
-
-**Web 界面**
-```
-http://localhost:9900
-```
-
-**命令行**
-```bash
-# 上传文档
-curl -X POST http://localhost:9900/api/upload \
-  -F "file=@document.txt"
-
-# 智能问答
-curl -X POST http://localhost:9900/api/chat \
+curl -X POST http://localhost:8082/api/novels/projects \
   -H "Content-Type: application/json" \
-  -d '{"Id":"test","Question":"什么是向量数据库？"}'
-
-# 健康检查
-curl http://localhost:9900/milvus/health
+  -d "{\"projectName\":\"demo-novel\",\"sourceLanguage\":\"日语\",\"targetLanguage\":\"中文\"}"
 ```
 
+上传原文：
 
-**版本**: v1.0.0  
-**作者**: chief  
-**许可证**: MIT
+```bash
+curl -X POST http://localhost:8082/api/novels/projects/{projectId}/source \
+  -F "file=@D:/path/to/novel.epub"
+```
+
+拆分章节：
+
+```bash
+curl -X POST http://localhost:8082/api/novels/projects/{projectId}/split \
+  -H "Content-Type: application/json" \
+  -d "{}"
+```
+
+查询状态：
+
+```bash
+curl http://localhost:8082/api/novels/projects/{projectId}
+```
