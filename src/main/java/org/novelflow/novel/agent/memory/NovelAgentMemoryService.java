@@ -31,6 +31,7 @@ public class NovelAgentMemoryService {
     private static final Logger logger = LoggerFactory.getLogger(NovelAgentMemoryService.class);
     private static final TypeReference<Map<String, Object>> MAP_TYPE = new TypeReference<>() {};
     private static final DateTimeFormatter KEY_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+    private static final double SCORE_ROUNDING_SCALE = 10000.0;
 
     private final NovelAgentMemoryProperties properties;
     private final NovelAgentMemoryMapper memoryMapper;
@@ -201,7 +202,7 @@ public class NovelAgentMemoryService {
             return "";
         }
         StringBuilder builder = new StringBuilder();
-        builder.append("长期记忆（PostgreSQL，按相关性检索；用于保持跨会话偏好、术语和工作习惯，不要逐字复述）：\n");
+        builder.append("闀挎湡璁板繂锛圥ostgreSQL锛屾寜鐩稿叧鎬ф绱紱鐢ㄤ簬淇濇寔璺ㄤ細璇濆亸濂姐€佹湳璇拰宸ヤ綔涔犳儻锛屼笉瑕侀€愬瓧澶嶈堪锛夛細\n");
         int index = 1;
         for (NovelAgentMemoryRecord memory : memories) {
             builder.append(index++)
@@ -503,11 +504,16 @@ public class NovelAgentMemoryService {
         payload.put("content", memory.getContent());
         payload.put("summary", safe(memory.getSummary()));
         payload.put("importance", memory.getImportance());
-        payload.put("score", Math.round(memory.getScore() * 10000.0) / 10000.0);
-        payload.put("vectorScore", Math.round(memory.getVectorScore() * 10000.0) / 10000.0);
-        payload.put("textScore", Math.round(memory.getTextScore() * 10000.0) / 10000.0);
+        payload.put("score", roundScore(memory.getScore()));
+        payload.put("vectorScore", roundScore(memory.getVectorScore()));
+        payload.put("textScore", roundScore(memory.getTextScore()));
         payload.put("metadata", memory.getMetadata());
         payload.put("updatedAt", memory.getUpdateTime() == null ? "" : memory.getUpdateTime().toString());
         return payload;
     }
+
+    private static double roundScore(double score) {
+        return Math.round(score * SCORE_ROUNDING_SCALE) / SCORE_ROUNDING_SCALE;
+    }
 }
+
